@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion de compte{% endblock %}
+
+{% block body %}
+
+    <h1>Bienvenue {{ user.username }}</h1>
+    <div class="accounts">
+        {% for account in accounts %}
+            <p>Label : {{ account.label }}</p>
+            <p>Amount : {{ account.balance }}</p>
+        {% endfor %}
+    </div>
+
+{% endblock %}
