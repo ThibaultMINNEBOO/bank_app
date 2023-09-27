@@ -26,6 +26,14 @@ class Operation
     #[ORM\ManyToOne(inversedBy: 'operations')]
     private ?Account $account = null;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $paid_at = null;
+
+    public function __construct()
+    {
+        $this->paid_at = new \DateTimeImmutable();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +83,18 @@ class Operation
     public function setAccount(?Account $account): static
     {
         $this->account = $account;
+
+        return $this;
+    }
+
+    public function getPaidAt(): ?\DateTimeImmutable
+    {
+        return $this->paid_at;
+    }
+
+    public function setPaidAt(\DateTimeImmutable $paid_at): static
+    {
+        $this->paid_at = $paid_at;
 
         return $this;
     }

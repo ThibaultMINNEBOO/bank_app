@@ -14,10 +14,6 @@ class AppFixtures extends Fixture
     {
         UserFactory::createMany(30);
 
-        AccountFactory::createMany(100, fn () => ['owner_id' => UserFactory::random()]);
-
-        OperationFactory::createMany(100, fn () => ['account' => AccountFactory::random()]);
-
         UserFactory::createOne([
             'password' => 'toto',
             'roles' => ['ROLE_ADMIN'],
@@ -31,5 +27,9 @@ class AppFixtures extends Fixture
             'username' => "Essai",
             'email' => "essai@gmail.com"
         ]);
+
+        AccountFactory::createMany(100, fn () => ['owner_id' => UserFactory::random()]);
+
+        OperationFactory::createMany(100, fn () => ['account' => AccountFactory::random()]);
     }
 }

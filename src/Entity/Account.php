@@ -25,9 +25,13 @@ class Account
     #[ORM\OneToMany(mappedBy: 'account', targetEntity: Operation::class)]
     private Collection $operations;
 
+    #[ORM\Column]
+    private ?float $balance = null;
+
     public function __construct()
     {
         $this->operations = new ArrayCollection();
+        $this->balance = 0;
     }
 
     public function getId(): ?int
@@ -85,6 +89,23 @@ class Account
                 $operation->setAccount(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBalance(): ?float
+    {
+        $total = $this->balance;
+        foreach ($this->getOperations() as $operation) {
+            $total += $operation->getAmount();
+        }
+
+        return $total;
+    }
+
+    public function setBalance(float $balance): static
+    {
+        $this->balance = $balance;
 
         return $this;
     }

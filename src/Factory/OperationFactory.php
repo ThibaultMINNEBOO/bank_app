@@ -43,13 +43,15 @@ final class OperationFactory extends ModelFactory
      * @see https://symfony.com/bundles/ZenstruckFoundryBundle/current/index.html#model-factories
      *
      * @todo add your default values here
+     * @throws \Exception
      */
     protected function getDefaults(): array
     {
         return [
             'amount' => self::faker()->randomFloat(),
             'title' => "Virement from " . self::faker()->ipv4(),
-            'account' => AccountFactory::new()
+            'account' => AccountFactory::new(),
+            'paid_at' => new \DateTimeImmutable(self::faker()->date())
         ];
     }
 

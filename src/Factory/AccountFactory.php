@@ -49,6 +49,7 @@ final class AccountFactory extends ModelFactory
         return [
             'label' => self::faker()->iban(),
             'owner_id' => UserFactory::new(),
+            'balance' => self::faker()->numberBetween(0, 10000),
         ];
     }
 
